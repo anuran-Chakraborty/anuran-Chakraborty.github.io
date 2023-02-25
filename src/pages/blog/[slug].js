@@ -11,6 +11,7 @@ import "highlight.js/styles/a11y-dark.css";
 import path from "path";
 import fs from "fs";
 import { DEFAULT_THUMBNAIL_FILE } from "@/api/constants";
+import WrapperComponent from "@/components/WrapperComponent";
 
 let markdownRenderer = md({
     highlight: function (str, lang) {
@@ -53,7 +54,10 @@ export const getStaticProps = async ({ params: { slug } }) => {
         ...frontMatter.slug.split("_"),
         DEFAULT_THUMBNAIL_FILE
     );
-    if (!("thumbnailImage" in frontMatter) && fs.existsSync(path.join(process.cwd(), 'public', thumbnailImagePath))) {
+    if (
+        !("thumbnailImage" in frontMatter) &&
+        fs.existsSync(path.join(process.cwd(), "public", thumbnailImagePath))
+    ) {
         frontMatter["thumbnailImage"] = thumbnailImagePath;
     }
     return { props: { key: slug, frontMatter, content, slug } };
@@ -61,14 +65,16 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
 const BlogPage = ({ frontMatter, content }) => {
     return (
-        <div className="container mx-auto max-w-5xl">
-            <PostMetadata frontMatter={frontMatter} />
+        <WrapperComponent>
+            <div className="container mx-auto max-w-5xl">
+                <PostMetadata frontMatter={frontMatter} />
 
-            <article
-                className="prose prose-slate prose-lg leading-6 font-body mx-auto max-w-none"
-                dangerouslySetInnerHTML={{ __html: markdownRenderer.render(content) }}
-            />
-        </div>
+                <article
+                    className="prose prose-slate prose-lg leading-6 font-body mx-auto max-w-none"
+                    dangerouslySetInnerHTML={{ __html: markdownRenderer.render(content) }}
+                />
+            </div>
+        </WrapperComponent>
     );
 };
 
