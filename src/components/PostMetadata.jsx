@@ -1,15 +1,15 @@
 import React from "react";
 
-const PostMetadata = ({ frontMatter, thumbnailImage }) => {
-  let image = frontMatter.thumbnailImage ? (
-    <img src={frontMatter.thumbnailImage} alt="thumbnail" />
-  ) : null;
+const PostMetadata = ({ frontMatter }) => {
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <div>
-        <h1 className="text-5xl font-heading font-black">{frontMatter.title}</h1>
-        {image}
-        <h2 className="mt-2 text-md font-date">{`Posted on ${new Date(frontMatter.date).toDateString()}`}</h2>
+        <h2 className="mt-2 text-md font-date">{`Posted on ${new Date(
+          frontMatter.date
+        ).toDateString()}`}</h2>
+        <h1 className="text-5xl mt-2 font-heading font-black">
+          {frontMatter.title}
+        </h1>
       </div>
     </div>
   );

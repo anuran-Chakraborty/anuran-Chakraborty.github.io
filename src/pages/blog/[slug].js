@@ -64,15 +64,22 @@ export const getStaticProps = async ({ params: { slug } }) => {
 };
 
 const BlogPage = ({ frontMatter, content }) => {
+    let image = frontMatter.thumbnailImage ? (
+        <img src={frontMatter.thumbnailImage} alt="thumbnail" />
+    ) : null;
     return (
         <WrapperComponent>
-            <div className="container mx-auto max-w-5xl">
-                <PostMetadata frontMatter={frontMatter} />
-
-                <article
-                    className="prose prose-slate prose-lg leading-6 font-body mx-auto max-w-none"
-                    dangerouslySetInnerHTML={{ __html: markdownRenderer.render(content) }}
-                />
+            <div className="overflow-hidden bg-white shadow sm:rounded-lg mb-5 container mx-auto max-w-5xl">
+                {image}
+                <div className="lg:px-10 md:px-5 sm:px-5 pb-5">
+                    <PostMetadata frontMatter={frontMatter} />
+                    <article
+                        className="prose prose-slate prose-lg prose-tight leading-tight font-body mx-auto max-w-none"
+                        dangerouslySetInnerHTML={{
+                            __html: markdownRenderer.render(content),
+                        }}
+                    />
+                </div>
             </div>
         </WrapperComponent>
     );

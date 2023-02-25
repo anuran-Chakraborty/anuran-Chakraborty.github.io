@@ -7,9 +7,9 @@ module.exports = {
         body: ["Charter"],
         heading: ["Martel Sans"],
         author: ["sans"],
-        date: ["Martel Sans"]
+        date: ["Martel Sans"],
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("flowbite/plugin"), require("@tailwindcss/typography")],
 };

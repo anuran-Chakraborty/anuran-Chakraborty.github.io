@@ -36,6 +36,7 @@ export const readPostsInACategory = (category) => {
       ...readFrontMatterAndContentForAPost(slug).frontMatter,
     };
   });
+  slugList.sort((a, b) => new Date(b.date) - new Date(a.date));
   return slugList;
 };
 

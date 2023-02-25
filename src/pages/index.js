@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import { readPostsByCategories } from "@/api";
-import PostCard from "@/components/PostCard";
-import Navbar from "@/components/Navbar";
 import WrapperComponent from "@/components/WrapperComponent";
+import RecentPosts from "@/components/RecentPosts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +19,9 @@ const Home = ({ postsForAllCategories }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <WrapperComponent >
+      <WrapperComponent>
         <main>
-          <div className="container mx-auto grid grid-cols-3 gap-8">
-            {postsForAllCategories.map((post) => <PostCard key={post.slug} post={post} />)}
-          </div>
+          <RecentPosts postsForAllCategories={postsForAllCategories} />
         </main>
       </WrapperComponent>
     </>
