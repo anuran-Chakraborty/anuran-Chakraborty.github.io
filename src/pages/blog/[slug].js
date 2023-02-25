@@ -6,20 +6,28 @@ import md from "markdown-it";
 import markdownItPlantuml from "markdown-it-plantuml";
 import hljs from "highlight.js";
 import React from "react";
-import 'highlight.js/styles/a11y-dark.css';
+import PostMetadata from "@/components/PostMetadata";
+import "highlight.js/styles/a11y-dark.css";
+import path from "path";
+import fs from "fs";
+import { DEFAULT_THUMBNAIL_FILE } from "@/api/constants";
 
 let markdownRenderer = md({
     highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
             try {
-                return '<pre class="hljs"><code>' +
+                return (
+                    '<pre class="hljs"><code>' +
                     hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-                    '</code></pre>';
+                    "</code></pre>"
+                );
             } catch (__) { }
         }
 
-        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
-    }
+        return (
+            '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>"
+        );
+    },
 });
 
 markdownRenderer.use(markdownItPlantuml);
@@ -39,14 +47,25 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
     const { frontMatter, content } = readFrontMatterAndContentForAPost(slug);
-    return { props: { key: slug, frontMatter, content } };
+    frontMatter["slug"] = slug;
+    const thumbnailImagePath = path.join(
+        "/images",
+        ...frontMatter.slug.split("_"),
+        DEFAULT_THUMBNAIL_FILE
+    );
+    if (!("thumbnailImage" in frontMatter) && fs.existsSync(path.join(process.cwd(), 'public', thumbnailImagePath))) {
+        frontMatter["thumbnailImage"] = thumbnailImagePath;
+    }
+    return { props: { key: slug, frontMatter, content, slug } };
 };
 
 const BlogPage = ({ frontMatter, content }) => {
     return (
-        <div>
-            <h1>{frontMatter.title}</h1>
-            <article className="prose lg:prose-xl dark:prose-invert"
+        <div className="container mx-auto max-w-5xl">
+            <PostMetadata frontMatter={frontMatter} />
+
+            <article
+                className="prose prose-slate prose-lg leading-6 font-body mx-auto max-w-none"
                 dangerouslySetInnerHTML={{ __html: markdownRenderer.render(content) }}
             />
         </div>
