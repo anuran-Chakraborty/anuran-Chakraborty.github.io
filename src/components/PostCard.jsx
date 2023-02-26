@@ -12,7 +12,7 @@ const PostCard = ({ post }) => {
     : post.thumbnailImage;
 
   return (
-    <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+    <div className="overflow-hidden bg-white hover:shadow-2xl shadow-xl sm:rounded-lg">
       <img
         src={thumbnailImageSource}
         alt="thumbnail"

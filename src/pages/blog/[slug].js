@@ -12,6 +12,7 @@ import path from "path";
 import fs from "fs";
 import { DEFAULT_THUMBNAIL_FILE } from "@/api/constants";
 import WrapperComponent from "@/components/WrapperComponent";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 let markdownRenderer = md({
     highlight: function (str, lang) {
@@ -69,7 +70,7 @@ const BlogPage = ({ frontMatter, content }) => {
     ) : null;
     return (
         <WrapperComponent>
-            <div className="overflow-hidden bg-white shadow sm:rounded-lg mb-5 container mx-auto max-w-5xl">
+            <div className="overflow-hidden bg-white shadow-2xl sm:rounded-lg mb-5 container mx-auto max-w-5xl">
                 {image}
                 <div className="lg:px-10 md:px-5 sm:px-5 pb-5">
                     <PostMetadata frontMatter={frontMatter} />
@@ -81,6 +82,7 @@ const BlogPage = ({ frontMatter, content }) => {
                     />
                 </div>
             </div>
+            <ScrollToTopButton />
         </WrapperComponent>
     );
 };
