@@ -8,11 +8,9 @@ import hljs from "highlight.js";
 import React from "react";
 import PostMetadata from "@/components/PostMetadata";
 import "highlight.js/styles/a11y-dark.css";
-import path from "path";
-import fs from "fs";
-import { DEFAULT_THUMBNAIL_FILE } from "@/api/constants";
 import WrapperComponent from "@/components/WrapperComponent";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import Image from "next/image";
 
 let markdownRenderer = md({
     highlight: function (str, lang) {
@@ -50,23 +48,18 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { slug } }) => {
     const { frontMatter, content } = readFrontMatterAndContentForAPost(slug);
     frontMatter["slug"] = slug;
-    const thumbnailImagePath = path.join(
-        "/images",
-        ...frontMatter.slug.split("_"),
-        DEFAULT_THUMBNAIL_FILE
-    );
-    if (
-        !("thumbnailImage" in frontMatter) &&
-        fs.existsSync(path.join(process.cwd(), "public", thumbnailImagePath))
-    ) {
-        frontMatter["thumbnailImage"] = thumbnailImagePath;
-    }
     return { props: { key: slug, frontMatter, content, slug } };
 };
 
 const BlogPage = ({ frontMatter, content }) => {
     let image = frontMatter.thumbnailImage ? (
-        <img src={frontMatter.thumbnailImage} alt="thumbnail" />
+        <Image
+            width={1000}
+            height={1000}
+            className="h-full w-full"
+            src={frontMatter.thumbnailImage}
+            alt="thumbnail"
+        />
     ) : null;
     return (
         <WrapperComponent>

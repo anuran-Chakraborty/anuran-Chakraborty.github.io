@@ -1,21 +1,22 @@
 import React from "react";
-import path from "path";
 import Link from "next/link";
 import { MAX_DESCRIPTION_LENGTH } from "@/api/constants";
+import Image from "next/image";
 
 const PostCard = ({ post }) => {
-  const DEFAULT_THUMBNAIL_PATH = `images/${path.join(
-    ...post.slug.split("_")
-  )}/thumbnail.png`;
-  const thumbnailImageSource = !("thumbnailImage" in post)
-    ? DEFAULT_THUMBNAIL_PATH
-    : post.thumbnailImage;
+  const thumbnailImageSource = post.thumbnailImage;
 
   return (
     <div className="overflow-hidden bg-white hover:shadow-2xl shadow-xl sm:rounded-lg">
       <Link href={`blog/${post.slug}`}>
-        <div>
-          <img src={thumbnailImageSource} alt="thumbnail" />
+        <div className="relative">
+          <Image
+            src={thumbnailImageSource}
+            width={1000}
+            className="h-full w-full"
+            height={1000}
+            alt="thumbnail"
+          />
           <div className="px-4 pt-3 pb-1 sm:px-2">
             <h3 className="text-lg font-heading font-black leading-6 text-gray-900">
               {post.title}

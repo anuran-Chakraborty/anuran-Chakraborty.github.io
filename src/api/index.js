@@ -1,6 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { POSTS_PATH, MARKDOWN_EXTENSION } from "@/api/constants";
+import {
+  POSTS_PATH,
+  MARKDOWN_EXTENSION,
+  DEFAULT_THUMBNAIL_PATH,
+  DEFAULT_THUMBNAIL_FILE,
+} from "@/api/constants";
 import matter from "gray-matter";
 
 export const getPostPathFromSlug = (slug) => {
@@ -36,7 +41,9 @@ export const readPostsInACategory = (category) => {
       ...readFrontMatterAndContentForAPost(slug).frontMatter,
     };
   });
-  let filteredSlugList = slugList.filter((post) => post.published && post.published == true);
+  let filteredSlugList = slugList.filter(
+    (post) => post.published && post.published == true
+  );
   filteredSlugList.sort((a, b) => new Date(b.date) - new Date(a.date));
   return filteredSlugList;
 };
@@ -48,5 +55,16 @@ export const readFrontMatterAndContentForAPost = (slug) => {
   }
   const postFile = fs.readFileSync(postPath, "");
   const { data: frontMatter, content } = matter(postFile);
+  frontMatter["thumbnailImage"] = getThumbnailImageForPost(slug, frontMatter);
   return { frontMatter, content };
+};
+
+export const getThumbnailImageForPost = (slug, frontMatter) => {
+  const thumbnailImagePath =
+    frontMatter.thumbnailImage ??
+    `/images/${slug.split("_").join("/")}/${DEFAULT_THUMBNAIL_FILE}`;
+  if (fs.existsSync(`${process.cwd()}/public/${thumbnailImagePath}`)) {
+    return thumbnailImagePath;
+  }
+  return DEFAULT_THUMBNAIL_PATH;
 };
