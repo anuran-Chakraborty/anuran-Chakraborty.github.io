@@ -11,10 +11,10 @@ const PostCard = ({ post }) => {
         alt="thumbnail"
       />
       <div className="px-4 pt-3 pb-1 sm:px-2">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">
+        <h3 className="text-lg font-heading font-black leading-6 text-gray-900">
           {post.title}
         </h3>
-        <p className="mt-1 max-w-2xl text-sm text-gray-500">
+        <p className="mt-1 max-w-2xl text-sm font-date text-gray-500">
           {new Date(Date.parse(post.date)).toDateString("dd/MM/yyyy")}
         </p>
         <div className="my-1 max-w-2xl text-md text-gray-500 text-justify">

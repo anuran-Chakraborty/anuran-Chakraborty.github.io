@@ -17,8 +17,9 @@ const RecentPosts = ({ postsForAllCategories }) => {
 
           return (
             <Tabs.Item
+              key={uniqueCategory}
               active={defaultCategory == uniqueCategory}
-              title={uniqueCategory.replace("-"," ").toUpperCase()}
+              title={uniqueCategory.replaceAll("-", " ").slice(3).toUpperCase()}
             >
               <div className="container mx-auto grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-8">
                 {postsInThisCategory.map((post) => (
