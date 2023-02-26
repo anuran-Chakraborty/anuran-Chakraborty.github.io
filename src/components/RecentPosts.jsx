@@ -5,7 +5,7 @@ import { Tabs } from "flowbite-react";
 const RecentPosts = ({ postsForAllCategories }) => {
   const categoryList = postsForAllCategories.map((post) => post.category);
   const uniqueCategoryList = [...new Set(categoryList)];
-  const defaultCategory = uniqueCategoryList[1];
+  const defaultCategory = uniqueCategoryList[0];
 
   return (
     <div className="container mx-auto">
