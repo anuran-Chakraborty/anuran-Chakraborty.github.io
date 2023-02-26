@@ -10,7 +10,6 @@ import PostMetadata from "@/components/PostMetadata";
 import "highlight.js/styles/a11y-dark.css";
 import WrapperComponent from "@/components/WrapperComponent";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import Image from "next/image";
 
 let markdownRenderer = md({
     highlight: function (str, lang) {
@@ -53,10 +52,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
 const BlogPage = ({ frontMatter, content }) => {
     let image = frontMatter.thumbnailImage ? (
-        <Image
-            width={1000}
-            height={1000}
-            className="h-full w-full"
+        <img
             src={frontMatter.thumbnailImage}
             alt="thumbnail"
         />

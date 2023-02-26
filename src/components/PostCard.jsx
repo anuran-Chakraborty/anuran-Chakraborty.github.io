@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { MAX_DESCRIPTION_LENGTH } from "@/api/constants";
-import Image from "next/image";
 
 const PostCard = ({ post }) => {
   const thumbnailImageSource = post.thumbnailImage;
@@ -10,11 +9,8 @@ const PostCard = ({ post }) => {
     <div className="overflow-hidden bg-white hover:shadow-2xl shadow-xl sm:rounded-lg">
       <Link href={`blog/${post.slug}`}>
         <div className="relative">
-          <Image
+          <img
             src={thumbnailImageSource}
-            width={1000}
-            className="h-full w-full"
-            height={1000}
             alt="thumbnail"
           />
           <div className="px-4 pt-3 pb-1 sm:px-2">
