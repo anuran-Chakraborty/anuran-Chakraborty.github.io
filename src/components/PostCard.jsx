@@ -4,10 +4,17 @@ import Link from "next/link";
 import { MAX_DESCRIPTION_LENGTH } from "@/api/constants";
 
 const PostCard = ({ post }) => {
+  const DEFAULT_THUMBNAIL_PATH = `images/${path.join(
+    ...post.slug.split("_")
+  )}/thumbnail.png`;
+  const thumbnailImageSource = !("thumbnailImage" in post)
+    ? DEFAULT_THUMBNAIL_PATH
+    : post.thumbnailImage;
+
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-lg">
       <img
-        src={`images/${path.join(...post.slug.split("_"))}/thumbnail.png`}
+        src={thumbnailImageSource}
         alt="thumbnail"
       />
       <div className="px-4 pt-3 pb-1 sm:px-2">

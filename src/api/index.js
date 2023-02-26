@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { POSTS_PATH, DEFAULT_POST_FILE } from "@/api/constants";
+import { POSTS_PATH, MARKDOWN_EXTENSION } from "@/api/constants";
 import matter from "gray-matter";
 
 export const getPostPathFromSlug = (slug) => {
   const filePath = path.join(...slug.split("_"));
-  const postPath = path.join(POSTS_PATH, filePath, DEFAULT_POST_FILE);
+  const postPath = path.join(POSTS_PATH, `${filePath}.${MARKDOWN_EXTENSION}`);
   return postPath;
 };
 
@@ -29,7 +29,7 @@ export const readPostsInACategory = (category) => {
   const postPath = path.join(POSTS_PATH, category);
   const postsInThisCategory = fs.readdirSync(postPath);
   const slugList = postsInThisCategory.map((post) => {
-    const slug = `${category}_${post}`;
+    const slug = `${category}_${post.slice(0, post.lastIndexOf("."))}`;
     return {
       category,
       slug,

@@ -1,16 +1,19 @@
 ---
-title: "Second Post on LLD Prereqs"
-date: "2023-12-22"
-description: "Dolor sit amet, consectetuer adipiscing elit. Nullam dictum felis eu pede mollis pretium. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus"
+title: "First Post on LLD Prereqs"
+date: "2022-12-22"
+description: "Dolor sit amet, consectetuer adipiscing elit. Nullam dictum felis eu pede mollis pretium. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus Dolor sit amet, consectetuer adipiscing elit. Nullam dictum felis eu pede mollis pretium. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus"
 author: "Anuran Chakraborty"
+thumbnailImage: "/images/bg-image.png"
 published: true
 ---
 
-## Lorem ipsum
+# Lorem ipsum H1
 
 Dolor sit amet, consectetuer adipiscing elit. Nullam dictum felis eu pede mollis pretium. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
-## h2
+## Lorem ipsum H2
+
+### Lorem ipsum H3
 
 Aenean commodo ligula eget dolor. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
 
