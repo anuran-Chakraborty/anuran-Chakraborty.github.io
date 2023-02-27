@@ -12,11 +12,11 @@ const Navbar = () => {
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="flex flex-col bg-transparent border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className="block text-white p-4 bg-transparent hover:bg-indigo-800 text-white">
-              <Link href="/" aria-current="page">
+            <Link href="/" aria-current="page">
+              <li className="block text-white p-4 bg-transparent hover:bg-indigo-800 text-white">
                 Home
-              </Link>
-            </li>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
