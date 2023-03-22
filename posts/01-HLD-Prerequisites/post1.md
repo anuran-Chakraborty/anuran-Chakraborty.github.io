@@ -6,6 +6,8 @@ author: "Anuran Chakraborty"
 published: true
 ---
 
+[[toc]]
+
 ## Lorem ipsum
 
 Dolor sit amet, consectetuer adipiscing elit. Nullam dictum felis eu pede mollis pretium. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.

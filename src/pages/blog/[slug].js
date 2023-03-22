@@ -3,6 +3,7 @@ import {
     readFrontMatterAndContentForAPost,
 } from "@/api";
 import md from "markdown-it";
+import toc from "markdown-it-table-of-contents"
 import markdownItPlantuml from "markdown-it-plantuml";
 import hljs from "highlight.js";
 import React from "react";
@@ -30,6 +31,9 @@ let markdownRenderer = md({
 });
 
 markdownRenderer.use(markdownItPlantuml);
+markdownRenderer.use(toc, {
+    "includeLevel": [1, 2, 3, 4]
+});
 
 export const getStaticPaths = async () => {
     const allPostDetails = readPostsByCategories();
