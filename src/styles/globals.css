@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.table-of-contents {
+    background-color: rgb(240, 240, 240);
+    padding: 2px;
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 5px;
+    width: 100%;
+}

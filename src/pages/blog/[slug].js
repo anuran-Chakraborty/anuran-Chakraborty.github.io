@@ -32,7 +32,8 @@ let markdownRenderer = md({
 
 markdownRenderer.use(markdownItPlantuml);
 markdownRenderer.use(toc, {
-    "includeLevel": [1, 2, 3, 4]
+    "includeLevel": [1, 2, 3, 4],
+    "listType": "ol"
 });
 
 export const getStaticPaths = async () => {
